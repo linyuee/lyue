@@ -11,5 +11,7 @@ namespace App\Controllers;
 
 abstract class Controller
 {
-
+    public function response(){
+        return json_encode();
+    }
 }

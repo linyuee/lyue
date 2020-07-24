@@ -1,4 +1,5 @@
 <?php
+
 namespace Core;
 
 use App\Controllers\TestController;
@@ -8,18 +9,21 @@ class Router
 
     protected $routes = [];
 
-    public static function init($rule){
-        $route = ltrim($_SERVER['REDIRECT_URL'],'/');
-        if (!isset($rule[$route])){
+    public static function init($rule)
+    {
+        $route = ltrim($_SERVER['REQUEST_URI'], '/');
+        if (!isset($rule[$route])) {
             throw new \Exception('404');
         }
-        $callback = explode('@',$rule[$route]);
+
+        $callback = explode('@', $rule[$route]);
         //$res = call_user_func_array(array('App\Controllers\\'.$controller[0],$controller[1]),[]);
-        $class = 'App\Controllers\\'.$callback[0];
-        $res = call_user_func_array(array(new $class(),$callback[1]),[]);
+        $class = 'App\Controllers\\' . $callback[0];
+        $res = call_user_func_array(array(new $class(), $callback[1]), []);
         echo $res;
 
     }
+
     public static function load($file)
     {
         $router = new static;

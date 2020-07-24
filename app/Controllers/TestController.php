@@ -1,18 +1,18 @@
 <?php
 namespace App\Controllers;
 
+use App\Librarys\Test;
+use App\Models\UserModel;
 use Pingqu\OpenApiSdk\Transcode\Client;
 
 class TestController extends Controller
 {
     public function test(){
-
-//        $client = new Client('tDKh3VB5Fd2UXH2YW','setDKhVm5FdUXH2Y1W');
-//        $res = $client->VideoJob()->add('changshijiaoyu/audio/Liekkas.mp3','changshijiaoyu/audio/Liekkas1.mp3',22,13);
-//        var_dump($res);
-        //throw new \Exception(222);
-        $a = 1/0;
-        return json_encode(['test1'=>111]);
+        $res = \App\Models\UserModel::select(['id','phone'])->get();
+        $res->each(function($item){
+            $item->test = 1;
+        });
+        return json_encode(['code'=>1,'data'=>$res]);
     }
 
     function test1(){
