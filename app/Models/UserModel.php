@@ -9,7 +9,7 @@
 namespace App\Models;
 
 
-use Core\Database\AbstractModel;
+use Lyue\Database\AbstractModel;
 
 class UserModel extends AbstractModel
 {

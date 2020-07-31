@@ -1,5 +1,6 @@
 <?php
 define('LYUE_START', microtime(true));
+define('BASE_PATH',__DIR__);
 //var_dump($_SERVER);
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -9,23 +10,24 @@ $router_rule = array(
 );
 
 //自动加载
-require __DIR__ . '/../core/Psr4AutoloaderClass.php';
+require __DIR__ . '/../vendor/lyue/framework/src/Psr4AutoloaderClass.php';
+
 $psr4autoload = new Psr4AutoloaderClass();
-$psr4autoload->addNamespace('Core', '../core');
 $psr4autoload->addNamespace('App', '../app');
 $psr4autoload->register();
 
-$exceptionHandler = new \Core\Exception\Handler();
+$exceptionHandler = new \Lyue\Exception\Handler();
 $exceptionHandler->handle();
 
 
-$container = new \Core\Provider\Container();
-//$container->bind('Test',function (){
-//   return new \App\Librarys\Test();
-//});
-//$test = $container->make('Test');
-//var_dump($test);die();
-$provider = new Core\Provider\AppProvider($container);
+$container = new \Lyue\Provider\Container();
+$provider = new Lyue\Provider\AppProvider($container);
 $provider->init(['Test' => \App\Librarys\Test::class]);
-$test = $provider->getInstance('Test');
-$response = \Core\Router::init($router_rule);
+
+require __DIR__ . '/../route/api.php';
+
+$request = new \Lyue\Http\Request();
+$response = \Lyue\Http\HttpKernel::init($request);
+$response->render();
+
+
