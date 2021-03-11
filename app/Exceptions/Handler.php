@@ -9,6 +9,7 @@
 namespace App\Exceptions;
 
 
+
 use Lyue\Exception\SystemException;
 use Lyue\Exception\ValidatorException;
 
@@ -17,11 +18,11 @@ class Handler
     //错误异常捕获回调
     public  function render($exception){
         if ($exception instanceof ValidatorException){
-            echo json_encode(['code'=>400,'msg'=>$exception->getMessage()]);
+            return  json_encode(['code'=>400,'msg'=>$exception->getMessage()]);
         }elseif ($exception instanceof SystemException){
-
+            return  json_encode(['code'=>-1,'msg'=>$exception->getMessage(),'data'=>['msg'=>$exception->getMessage(),'line'=>$exception->getLine(),'file'=>$exception->getFile(),'trace'=>$exception->getTrace()]]);
         }else{
-            echo json_encode(['code'=>-1,'msg'=>$exception->getMessage()]);
+            return  json_encode(['code'=>-1,'msg'=>$exception->getMessage(),'data'=>['msg'=>$exception->getMessage(),'line'=>$exception->getLine(),'file'=>$exception->getFile(),'trace'=>$exception->getTrace()]]);
         }
     }
 }

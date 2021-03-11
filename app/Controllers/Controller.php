@@ -11,8 +11,8 @@ namespace App\Controllers;
 
 abstract class Controller
 {
-    public function response(){
-        return json_encode();
+    public function response($data){
+        return json_encode(['code'=>0,'data'=>$data,'msg'=>'ok']);
     }
 
     protected function validtor($rule, $method = 'GET')

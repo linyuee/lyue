@@ -1,7 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hw201902
- * Date: 2020/10/10
- * Time: 14:45
- */
+namespace Lyue\Facades{
+    class Log{
+        public static function info($content){
+            return  \Lyue\Application::getInstance()->make(\Lyue\Log\Log::class)->info($content);
+        }
+    }
+}
+

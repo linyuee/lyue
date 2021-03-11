@@ -7,7 +7,7 @@ return [
             'username' => 'homestead',
             'password' => 'secret',
             'port' => 33060,
-            'database'=>''
+            'name'=>'blog'
         ]
     ]
 ];

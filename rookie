@@ -1,10 +1,15 @@
 #!/usr/bin/env php
 <?php
-define('BASE_PATH',__DIR__);
+define('BASE_PATH', realpath(__DIR__ . '/public/') . DIRECTORY_SEPARATOR);
+define('ROOT_DIR', realpath(__DIR__) . DIRECTORY_SEPARATOR);
 require_once __DIR__.'/vendor/autoload.php';
 $app = new \Symfony\Component\Console\Application('lyue');
 $application = new \Lyue\Console\Application($app);
+$application->singleton('db',function (){
+    return new \Lyue\Database\DB();
+});
 $application->init();
 $app->run();
 
 exit();
+

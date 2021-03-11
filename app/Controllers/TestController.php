@@ -1,16 +1,14 @@
 <?php
 namespace App\Controllers;
 
-use App\Librarys\Test;
+use App\Librarys\User;
 use App\Models\UserModel;
-use Pingqu\OpenApiSdk\Transcode\Client;
+
 
 class TestController extends Controller
 {
     public function test(){
-        $res = \App\Models\UserModel::select(['id','phone'])->get();
-
-        return json_encode(['code'=>1,'data'=>$res]);
+        dd(1);
     }
 
     function test1(){

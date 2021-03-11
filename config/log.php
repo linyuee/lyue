@@ -1,7 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hw201902
- * Date: 2020/9/28
- * Time: 15:54
- */
+return [
+    'error_log'=>'error.log',
+    'log_exist_days'=>7
+];

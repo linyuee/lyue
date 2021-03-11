@@ -9,7 +9,7 @@
 namespace App\Exceptions;
 
 
-class MysqlException
+class MysqlException extends \Exception
 {
 
 }

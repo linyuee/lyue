@@ -9,16 +9,26 @@
 namespace App\Librarys;
 
 
-class Test
+class User
 {
+    private $username;
+    public $id;
+
 
     public function __construct()
     {
+        $this->id = 1;
     }
 
-    public  function dump($content){
-        return $content;
+    public function getUsername(){
+        return $this->username;
     }
 
 
+    public function getAttribute(){
+        $vars = get_object_vars($this);
+        foreach ($vars as $k => $v) {
+            echo $k, ' => ', $v, PHP_EOL;
+        }
+    }
 }
