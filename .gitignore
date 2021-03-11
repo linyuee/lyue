@@ -8,5 +8,6 @@ Homestead.yaml
 .env
 .dev
 .DS_Store
+/storage/logs
 
 
