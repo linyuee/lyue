@@ -23,19 +23,17 @@ $app = require_once __DIR__ . '/../vendor/lyue/framework/src/bootstrap.php';
 $exceptionHandler = $app->make('exception');
 $exceptionHandler->handle();
 
-$middleware = new \Lyue\Middleware();
-$log = function ($handle){
-    return function ($name) use($handle){
-        $return = $handle($name);
-        return $return;
-    };
-};
-$middleware->bind($log);
+$pipes = array(
+    \App\Middleware\BaseMiddleware::class
+);
+$middleware = $app->make('pipeline');
+
+
 
 $request = $app->make(\Lyue\Http\Request::class);
-$middleware->run($request);
+$res = $middleware->send($request)->through($pipes)->then(function(){
+});
+
 $response = \Lyue\Http\HttpKernel::init($request);
 $response->render();
-
-
 

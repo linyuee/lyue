@@ -24,8 +24,20 @@ class TestController extends Controller
 {
     public function test()
     {
-
-       dd(1);
+        //1,
+        //2,3
+        //4,5,6
+        //7,8,9,10
+        $count = 4;
+        $s = 1;
+        for ($i=1;$i<=$count;$i++){
+            for ($j= 1;$j<=$i;$j++){
+                echo "hello\n";
+                echo "world";
+                $s++;
+            }
+        }
+      die();
         $user = UserModel::where('status',1)->get();
         dd($user);
 //       $res = Route::prefix('api')->group(function (Route $router) {
